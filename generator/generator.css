@@ -1,0 +1,85 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    pointer-events: none;
+    -webkit-user-select: none;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    -webkit-transform: translateZ(0);
+    background: #000;
+    color: #fff;
+}
+
+pre {
+    position: fixed;
+    top: -12px;
+    left: 0;
+    right: -20px;
+    bottom: -10px;
+    min-height: 16px;
+    font-family: Menlo, monospace;
+    font-size: 11px;
+    color: #fff;
+}
+
+body.inverted, pre.inverted, div.inverted {
+    color: #fff;
+    -webkit-filter: invert(1);
+}
+
+pre > div {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    height: 22px;
+}
+
+pre:before {
+    content: "";
+    position: fixed;
+    display: block;
+    z-index: 2;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    margin: auto;
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    background-size: 300px 300px;
+}
+
+pre[data-bg="0"]:before  { background-image: url("http://designyoutrust.com/wp-content/uploads/2011/01/dg1b.gif"); }
+pre[data-bg="1"]:before  { background-image: url("http://files.myopera.com/Trynity34/albums/12490142/tumblr_kyfejnsTSn1qzt4vjo1_500.gif"); }
+pre[data-bg="2"]:before { background-image: url("http://studiorokit.com/wp-content/uploads/2013/08/endles_3d_tunel.gif"); }
+/* pre[data-bg="3"]:before  { background-image: url("http://www.changethethought.com/wp-content/emiliogomariz.gif"); } */
+
+pre:after {
+    content: "";
+    background: url("http://www.scri8e.com/stars/flashites/FSz1/FS20.gif") repeat;
+    position: fixed;
+    display: block;
+    z-index: 1;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    margin: auto;
+    height: 100%;
+    width: 100%;
+    background-size: 300px 300px;
+    opacity: 0;
+}
+
+/* TODO - undo */
+
+pre:before {
+    display: none;
+}

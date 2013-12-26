@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <script src="generator.js"></script>
+        <link rel="stylesheet" href="generator.css" />
+        <style id="lifeGreen">
+            #color {
+                -webkit-transition: 600s all ease-in;
+                position: fixed;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                height: 100%;
+                width: 100%;
+                background: -webkit-linear-gradient(top left, green 0%, cyan 100%);
+                opacity: 0.4;
+                z-index: 1;
+            }
+
+            pre {
+                -webkit-transform: rotateZ(180deg);
+            }
+        </style>
+        <style id="deathRed">
+            #color {
+                -webkit-transition: 10s all ease-in;
+                position: fixed;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                height: 100%;
+                width: 100%;
+                background: -webkit-linear-gradient(top left, #723333 0%, #9D223C 100%);
+                opacity: 0;
+                z-index: 1;
+            }
+
+            pre {
+                -webkit-transform: rotateZ(0);
+            }
+        </style>
+    </head>
+    <body>
+        <pre data-bg=1 id=pre>
