@@ -20,6 +20,7 @@ Use to create:
 - http://www.sky.fm/oldschoolfunknsoul
 - http://www.nihilogic.dk/labs/google/webgl_music_visualizer/
 - http://smus.com/dynamic-icons-chrome-extensions/
+- http://andrew-hoyer.com/experiments/tumbler/
 
 Chrome resources:
 
