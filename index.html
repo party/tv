@@ -1,44 +1,95 @@
 <html>
-<style>
-html, body, iframe { overflow: hidden; background: #000; }
-iframe {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-}
-cover {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-    cursor: none;
-}
-</style>
+<head>
+    <script src="js/AudioContextMonkeyPatch.js"></script>
+    <script src="js/waveshaper.js"></script>
+    <script src="js/effects.js"></script>
+
+    <!-- Visualizer stuff -->
+    <script src="js/visualizer/events.js"></script>
+
+    <!-- WebGL stuff -->
+    <script src="js/visualizer/base.js"></script>
+    <script src="js/visualizer/cameracontroller.js"></script>
+
+    <!-- TODO(kbr): remove this dependency -->
+    <script src="js/visualizer/matrix4x4.js"></script>
+
+    <!-- Visualizer GL library -->
+    <script src="js/visualizer/visualizer.js"></script>
+    <script src="js/visualizer/shader.js"></script>
+
+    <style>
+        html, body {
+            overflow: hidden;
+            background: #000;
+            overflow: hidden;
+            margin: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        iframe {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            height: 100%;
+            width: 100%;
+            pointer-events: none;
+            opacity: 0.3;
+
+
+            display: none;
+        }
+
+        cover {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            cursor: none;
+        }
+    </style>
+</head>
 <body>
-    <iframe></iframe>
+    <iframe src="/tv/fluid" allowTransparency="true"></iframe>
+    <canvas id="view1" width="960" height="540"></canvas>
     <cover></cover>
     <script>
         display = document.querySelector('iframe');
         cover = document.querySelector('cover');
         current = 0;
         playlist = [
-            '/tv/fluid/?autoplay',
-            '/tv/reactive/?autoplay',
+            '/tv/fluid',
+            '/tv/reactive',
             '/tv/generator'
         ];
         cover.addEventListener('click', function(){
+            advance();
+        });
+        var advance = function() {
             display.setAttribute('src', playlist[current]);
             current = (current + 1) % playlist.length;
-        });
+        };
+        advance();
     </script>
 </body>
 </html>
