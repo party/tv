@@ -1,5 +1,7 @@
 <html>
 <head>
+    <script src="reactive/jquery.min.js"></script>
+
     <script src="js/AudioContextMonkeyPatch.js"></script>
     <script src="js/waveshaper.js"></script>
     <script src="js/effects.js"></script>
@@ -56,7 +58,7 @@
             display: none;
         }
 
-        cover {
+        .cover {
             position: fixed;
             top: 0;
             bottom: 0;
@@ -66,30 +68,32 @@
             height: 100%;
             border: 0;
             cursor: none;
+            -webkit-user-select: none;
         }
     </style>
 </head>
 <body>
-    <iframe src="/tv/fluid" allowTransparency="true"></iframe>
+    <iframe allowTransparency="true"></iframe>
     <canvas id="view1" width="960" height="540"></canvas>
-    <cover></cover>
+    <div class="cover"></div>
     <script>
         display = document.querySelector('iframe');
-        cover = document.querySelector('cover');
+
         current = 0;
         playlist = [
             '/tv/fluid',
             '/tv/reactive',
             '/tv/generator'
         ];
-        cover.addEventListener('click', function(){
-            advance();
-        });
+
         var advance = function() {
             display.setAttribute('src', playlist[current]);
             current = (current + 1) % playlist.length;
         };
-        advance();
+
+        $('.cover').dblclick(function(e){
+            advance();
+        });
     </script>
 </body>
 </html>

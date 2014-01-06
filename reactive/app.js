@@ -9,19 +9,12 @@
 
 
 var mouseX = 0, mouseY = 0, windowHalfX = window.innerWidth / 2, windowHalfY = window.innerHeight / 2, camera, scene, renderer, material, container;
-var source;
-var analyser;
 var buffer;
 var audioBuffer;
 var dropArea;
-var audioContext;
-var source;
-var processor;
 var analyser;
-var xhr;
-var started = false;
 
-var frameCount = 0;
+var CameraLetterWasPressedSinceLastRender = false;
 
 $(document).ready(function() {
 
@@ -69,54 +62,13 @@ function init() {
     stats.domElement.style.top = '0px';
     container.appendChild(stats.domElement);
 
-    //init listeners
-    $("#loadSample").click( loadSampleAudio);
-
     $(document).mousemove(onDocumentMouseMove);
     $(window).resize(onWindowResize);
-    document.addEventListener('drop', onDocumentDrop, false);
-    document.addEventListener('dragover', onDocumentDragOver, false);
 
     onWindowResize(null);
-    audioContext = new window.webkitAudioContext();
 
-    if (location.search === '?autoplay') {
-        $("#loadSample").click();
-    }
-}
+    analyser = window.parent.analyser1;
 
-function loadSampleAudio() {
-    $('#loading').text("loading...");
-
-    source = audioContext.createBufferSource();
-    analyser = audioContext.createAnalyser();
-    analyser.fftSize = 1024;
-
-    // Connect audio processing graph
-    source.connect(analyser);
-    analyser.connect(audioContext.destination);
-
-    loadAudioBuffer("beytah-screw-base.mp3");
-}
-
-function loadAudioBuffer(url) {
-    // Load asynchronously
-    var request = new XMLHttpRequest();
-    request.open("GET", url, true);
-    request.responseType = "arraybuffer";
-
-    request.onload = function() {
-        audioBuffer = audioContext.createBuffer(request.response, false );
-        finishLoad();
-    };
-
-    request.send();
-}
-
-function finishLoad() {
-    source.buffer = audioBuffer;
-    source.looping = true;
-    source.noteOn(0.0);
     startViz();
 }
 
@@ -133,12 +85,6 @@ function onWindowResize(event) {
     renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
-function animate() {
-    requestAnimationFrame(animate);
-    render();
-    stats.update();
-}
-
 var mouseMovementXScale = 1;
 var mouseMovementXDirection = 0.005;
 
@@ -147,39 +93,35 @@ var mouseMovementYDirection = 0.001;
 
 var mouseMovement = false;
 
+$(window.parent.document.body).find('.cover').click(function(){
+    mouseMovement = !mouseMovement;
+});
+
 function render() {
     LoopVisualizer.update();
 
-    if (location.search === '?autoplay') {
-        frameCount += 1;
+    if (mouseMovement) {
+        mouseX = windowHalfX * mouseMovementXScale;
+        mouseY = windowHalfY * mouseMovementYScale;
 
-        if (mouseMovement) {
-            mouseX = windowHalfX * mouseMovementXScale;
-            mouseY = windowHalfY * mouseMovementYScale;
-
-            mouseMovementYScale += mouseMovementYDirection;
-            if (mouseMovementYScale > 1.4) {
-                mouseMovementYDirection = -1 * mouseMovementYDirection;
-            }
-            if (mouseMovementYScale < 0.6) {
-                mouseMovementYDirection = -1 * mouseMovementYDirection;
-            }
-
-            mouseMovementXScale += mouseMovementXDirection;
-            if (mouseMovementXScale > 2) {
-                mouseMovementXDirection = -1 * mouseMovementXDirection;
-            }
-            if (mouseMovementXScale < 0) {
-                mouseMovementXDirection = -1 * mouseMovementXDirection;
-            }
-        } else {
-            mouseX = windowHalfX;
-            mouseY = windowHalfY * 1.28;
+        mouseMovementYScale += mouseMovementYDirection;
+        if (mouseMovementYScale > 1.4) {
+            mouseMovementYDirection = -1 * mouseMovementYDirection;
+        }
+        if (mouseMovementYScale < 0.6) {
+            mouseMovementYDirection = -1 * mouseMovementYDirection;
         }
 
-        if (frameCount % 1600 === 0) {
-            mouseMovement = !mouseMovement;
+        mouseMovementXScale += mouseMovementXDirection;
+        if (mouseMovementXScale > 2) {
+            mouseMovementXDirection = -1 * mouseMovementXDirection;
         }
+        if (mouseMovementXScale < 0) {
+            mouseMovementXDirection = -1 * mouseMovementXDirection;
+        }
+    } else {
+        mouseX = windowHalfX;
+        mouseY = windowHalfY * 1.28;
     }
 
     var xrot = mouseX/window.innerWidth * Math.PI*2 + Math.PI;
@@ -196,80 +138,13 @@ $(window).mousewheel(function(event, delta) {
     camera.position.z -= delta * 50;
 });
 
-function onDocumentDragOver(evt) {
-    evt.stopPropagation();
-    evt.preventDefault();
-    return false;
-}
-
-function onDocumentDrop(evt) {
-    evt.stopPropagation();
-    evt.preventDefault();
-
-    //clean up previous mp3
-    if (source) source.disconnect();
-    LoopVisualizer.remove();
-
-    $('#loading').show();
-    $('#loading').text("loading...");
-
-    var droppedFiles = evt.dataTransfer.files;
-
-    var reader = new FileReader();
-
-    reader.onload = function(fileEvent) {
-        var data = fileEvent.target.result;
-        initAudio(data);
-    };
-
-    reader.readAsArrayBuffer(droppedFiles[0]);
-
-}
-
-function initAudio(data) {
-    source = audioContext.createBufferSource();
-
-    if(audioContext.decodeAudioData) {
-        audioContext.decodeAudioData(data, function(buffer) {
-            source.buffer = buffer;
-            createAudio();
-        }, function(e) {
-            console.log(e);
-            $('#loading').text("cannot decode mp3");
-        });
-    } else {
-        source.buffer = audioContext.createBuffer(data, false );
-        createAudio();
-    }
-}
-
-
-function createAudio() {
-    processor = audioContext.createJavaScriptNode(2048 , 1 , 1 );
-    //processor.onaudioprocess = processAudio;
-
-    analyser = audioContext.createAnalyser();
-
-    source.connect(audioContext.destination);
-    source.connect(analyser);
-
-    analyser.connect(processor);
-    processor.connect(audioContext.destination);
-
-    source.noteOn(0);
-
-    startViz();
-}
-
 function startViz(){
-
-    $('#loading').hide();
-
     LoopVisualizer.init();
+    animate();
+}
 
-    if (!started){
-        started = true;
-        animate();
-    }
-
+function animate() {
+    requestAnimationFrame(animate);
+    render();
+    stats.update();
 }

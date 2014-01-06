@@ -28,9 +28,10 @@ var LoopVisualizer = (function() {
         waves = [];
         colors = [];
 
-        ////////INIT audio in
-        freqByteData = new Uint8Array(analyser.frequencyBinCount);
-        timeByteData = new Uint8Array(analyser.frequencyBinCount);
+        if (analyser && analyser.frequencyBinCount) {
+            freqByteData = new Uint8Array(analyser.frequencyBinCount);
+            timeByteData = new Uint8Array(analyser.frequencyBinCount);
+        }
 
         scene.add(loopHolder);
 
@@ -88,10 +89,27 @@ var LoopVisualizer = (function() {
     }
 
     function update() {
+        if (!freqByteData) {
+            if (analyser && analyser.frequencyBinCount) {
+                freqByteData = new Uint8Array(analyser.frequencyBinCount);
+                timeByteData = new Uint8Array(analyser.frequencyBinCount);
+            }
+
+            if (!freqByteData) {
+                return;
+            }
+        }
+
+        analyser = window.parent.analyser1;
 
         analyser.smoothingTimeConstant = 0.1;
         analyser.getByteFrequencyData(freqByteData);
         analyser.getByteTimeDomainData(timeByteData);
+
+        // boost levels
+        for(var j = 0; j < length; ++j) {
+            freqByteData[j] = Math.min(255, freqByteData[j] * 50);
+        }
 
         //get average level
         var length = freqByteData.length;
@@ -145,4 +163,4 @@ var LoopVisualizer = (function() {
         remove:remove,
         loopHolder:loopHolder
     };
-    }());
+}());
