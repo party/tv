@@ -1,5 +1,5 @@
 function message(msg) {
-  document.getElementById("message").innerHTML = msg;
+  console.log('message', msg);
 }
 
 var canvas = document.getElementById("canvas");
@@ -54,9 +54,7 @@ function updateFrame() {
 
   requestAnimationFrame(updateFrame);
 
-  if (!audio.playing) return;
-
-  var end = new Date;
+  var end = new Date();
   time = end - initial;
   offset = time * 0.0001;
 
@@ -93,8 +91,7 @@ function updateFrame() {
 }
 
 function updateVelocities() {
-
-  detector.sample(audio.analyser);
+  detector.sample(window.parent.analyser1);
 
   // big beats
   if (detector.beatChance > 1.6) {
@@ -132,32 +129,6 @@ window.onload = function() {
     showParticles =! showParticles;
     showVelocity =! showVelocity;
   });
-
-  audio = new Audio();
-
-  if (location.search === '?autoplay') {
-    loadSample.onclick();
-  }
-
-  document.addEventListener('drop', function(evt) {
-    evt.stopPropagation();
-    evt.preventDefault();
-    if (audio.source) audio.source.disconnect(); // clean up previous mp3
-    message("Loading User Audio...");
-    var droppedFiles = evt.dataTransfer.files;
-    var reader = new FileReader();
-    reader.onload = function(fileEvent) {
-      var data = fileEvent.target.result;
-      audio.initAudio(data);
-    };
-    reader.readAsArrayBuffer(droppedFiles[0]);
-  }, false);
-
-  document.addEventListener('dragover', function(evt) {
-    evt.stopPropagation();
-    evt.preventDefault();
-    return false;
-  }, false);
 
   for (var i = 0; i < n; i++) {
     resetParticle(i);

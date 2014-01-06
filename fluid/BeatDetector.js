@@ -13,11 +13,20 @@ function BeatDetector() {
 }
 
 BeatDetector.prototype.sample = function(analyser) {
+  var smoothingTimeConstantTest;
+  try {
+    smoothingTimeConstantTest = analyser.smoothingTimeConstant;
+  } catch (err) {}
+  if (!smoothingTimeConstantTest) {
+    return;
+  }
+
   var i, j;
   var sum, cur, mean, variance, stdev, weight;
   var fftSize = analyser.frequencyBinCount;
   var freqByteData = new Uint8Array(fftSize);
-  audio.analyser.smoothingTimeConstant = 0.1;
+
+  analyser.smoothingTimeConstant = 0.1;
   analyser.getByteFrequencyData(freqByteData);
   // get average level
   sum = 0;
