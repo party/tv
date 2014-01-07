@@ -1,15 +1,13 @@
 Main engine:
 
-- http://webaudiodemos.appspot.com/input/index.html
+- ~~http://webaudiodemos.appspot.com/input/index.html~~
 
 Add these:
 
-- Steven Wittens
-    - http://christmasexperiments.com/2013/22/
-- Felix Turner
-    - http://airtightinteractive.com/demos/js/pareidolia/
-    - http://airtightinteractive.com/demos/js/webcammesh/
-    - http://www.airtightinteractive.com/demos/js/ledeffect/
+- ~~http://airtightinteractive.com/demos/js/pareidolia/~~
+- http://christmasexperiments.com/2013/22/
+- http://airtightinteractive.com/demos/js/webcammesh/
+- http://www.airtightinteractive.com/demos/js/ledeffect/
 
 Use to create:
 
@@ -22,8 +20,3 @@ Use to create:
 - http://smus.com/dynamic-icons-chrome-extensions/
 - http://andrew-hoyer.com/experiments/tumbler/
 - http://html5-demos.appspot.com/static/webaudio/createMediaSourceElement.html
-
-Chrome resources:
-
-- http://developer.chrome.com/extensions/tabCapture.html
-- http://developer.chrome.com/extensions/extension.html
