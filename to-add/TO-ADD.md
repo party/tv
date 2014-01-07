@@ -5,6 +5,7 @@ Main engine:
 Add these:
 
 - ~~http://airtightinteractive.com/demos/js/pareidolia/~~
+- http://www.clicktorelease.com/code/bumpy-metaballs/
 - http://christmasexperiments.com/2013/22/
 - http://airtightinteractive.com/demos/js/webcammesh/
 - http://www.airtightinteractive.com/demos/js/ledeffect/
