@@ -81,13 +81,14 @@
 
         current = 0;
         playlist = [
-            '/tv/fluid',
-            '/tv/reactive',
-            '/tv/generator'
+            'pareidolia',
+            'fluid',
+            'reactive',
+            'generator'
         ];
 
         var advance = function() {
-            display.setAttribute('src', playlist[current]);
+            display.setAttribute('src', '/tv/' + playlist[current]);
             current = (current + 1) % playlist.length;
         };
 
