@@ -290,7 +290,9 @@ AnalyserView.prototype.doFrequencyAnalysis = function( analyser ) {
         break;
     }
 
-    this.drawGL();
+    // TODO - allow this to be toggle-able
+
+    //this.drawGL();
 }
 
 
