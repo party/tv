@@ -21,6 +21,7 @@ Use to create:
 - http://www.nihilogic.dk/labs/google/webgl_music_visualizer/
 - http://smus.com/dynamic-icons-chrome-extensions/
 - http://andrew-hoyer.com/experiments/tumbler/
+- http://html5-demos.appspot.com/static/webaudio/createMediaSourceElement.html
 
 Chrome resources:
 
