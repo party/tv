@@ -25,6 +25,7 @@ var rgbPass;
 var colorifyPass;
 
 var mouseX = 0, mouseY = 0;
+var mouseDown;
 var windowHalfX, windowHalfY;
 
 var boxes = [];
@@ -56,14 +57,10 @@ function init() {
 	document.onselectstart = function() {
 		return false;
 	};
-	document.addEventListener('mousemove', onDocumentMouseMove, false);
-	document.addEventListener('mousedown', onDocumentMouseDown, false);
-	document.addEventListener('mouseup', onDocumentMouseUp, false);
-	document.addEventListener('drop', onDocumentDrop, false);
-	document.addEventListener('dragover', onDocumentDragOver, false);
 	window.addEventListener('resize', onResize, false);
 
 	tagPanel = document.querySelector('#tag');
+	infoPanel = document.querySelector('#info');
 	tagButton = document.querySelector('#tagButton');
 	tagButton.addEventListener('mousedown', clickTag, false);
 
@@ -338,13 +335,6 @@ function selectOptionMic(){
 	//get mic in
 	getMicInput();
 	sketchParams.volSens = 4;
-}
-
-function selectOptionSample(){
-	introPanel.style.display = 'none';
-	//load MP3
-	loadSampleAudio();
-	sketchParams.volSens = 1.5;
 }
 
 function clickTag(){

@@ -13,12 +13,17 @@ body {
 	padding: 0 20px;
 	background-color: #000;
 	display: none;
+	opacity: 0.1;
+}
+
+#tag:hover {
+	opacity: 1;
 }
 
 a{
 	color: #fff;
-	text-decoration: none;	
-	border-bottom:thin dotted #999;			
+	text-decoration: none;
+	border-bottom:thin dotted #999;
 }
 
 #info {
@@ -26,7 +31,6 @@ a{
 }
 
 #intro {
-
 	width:700px;
 	height:400px;
 	position:absolute;
@@ -36,19 +40,6 @@ a{
 	padding: 5px 20px;
 	background-color: rgba(0,0,0,.5);
 	text-align: center;
-	cursor:default;
-}
-#prompt {
-	width:800px;
-	height:100px;
-	position:absolute;
-	left:50%;
-	top:50%;
-	margin:-50px 0 0 -400px;
-	padding: 5px 20px;
-	background-color: rgba(0,0,0,.5);
-	text-align: center;
-	display: none;
 	cursor:default;
 }
 
@@ -80,7 +71,7 @@ ul{
 
 li {
 	display:inline-block;
-	list-style-type:none; 
+	list-style-type:none;
 	padding-left:10px;
 	margin-left:10px;
 	border-left:thin dotted #999;
