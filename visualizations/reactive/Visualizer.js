@@ -4,7 +4,7 @@ var LoopVisualizer = (function() {
     var SEPARATION = 30;
     var INIT_RADIUS = 50;
     var SEGMENTS = 256;
-    var VOL_SENS = 2;
+    var VOL_SENS = 5;
 
     var rings = [];
     var geoms = [];
@@ -18,6 +18,9 @@ var LoopVisualizer = (function() {
     var freqByteData;
     var timeByteData;
 
+    $(window.parent.document.body).find('.cover').mousemove(function(e){
+        VOL_SENS = 0.1 * Math.floor((e.clientY * 100) / $(window).height());
+    });
 
     function init() {
 
