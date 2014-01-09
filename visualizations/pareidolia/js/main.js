@@ -57,6 +57,9 @@ function init() {
 	document.onselectstart = function() {
 		return false;
 	};
+	document.addEventListener('mousemove', onDocumentMouseMove, false);
+	document.addEventListener('mousedown', onDocumentMouseDown, false);
+	document.addEventListener('mouseup', onDocumentMouseUp, false);
 	window.addEventListener('resize', onResize, false);
 
 	tagPanel = document.querySelector('#tag');
