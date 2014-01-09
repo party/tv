@@ -78,6 +78,8 @@ function init() {
 	gui.add(sketchParams, 'volSens', 0.1, 10).listen().step(0.1);
 	gui.add(sketchParams, 'cubeSpeed', -2, 4).step(0.1);
 
+	setupAlternativeSketchParamsInterface();
+
 	//STATS
 	stats = new Stats();
 	document.querySelector('#fps').appendChild(stats.domElement);
@@ -365,3 +367,9 @@ function onResize() {
 	windowHalfY = window.innerHeight / 2;
 }
 
+function setupAlternativeSketchParamsInterface() {
+	$(window.parent.document.body).find('.cover').mousemove(function(e){
+		sketchParams.volSens = 0.1 * Math.floor((e.clientY * 100) / $(window).height());
+		sketchParams.cubeSpeed = 0.1 * (Math.floor((e.clientX * 60) / $(window).width()) - 20);
+	});
+}
