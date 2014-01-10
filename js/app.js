@@ -2,7 +2,7 @@
   var tv;
   tv = {};
   tv.currentVisualization = 0;
-  tv.visualizations = ['pareidolia', 'fluid', 'reactive', 'generator'];
+  tv.visualizations = ['pareidolia', 'fluid', 'reactive', 'generator', 'tumbler'];
   tv.init = function() {
     tv.setupDOM();
     tv.setupVisualizationLoadEvents();

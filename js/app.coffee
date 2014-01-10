@@ -5,7 +5,8 @@ tv.visualizations = [
     'pareidolia',
     'fluid',
     'reactive',
-    'generator'
+    'generator',
+    'tumbler'
 ]
 
 tv.init = ->
