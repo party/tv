@@ -21,3 +21,5 @@ Use to create:
 - http://smus.com/dynamic-icons-chrome-extensions/
 - http://andrew-hoyer.com/experiments/tumbler/
 - http://html5-demos.appspot.com/static/webaudio/createMediaSourceElement.html
+- http://andrew-hoyer.com/experiments/fractals/
+- http://andrew-hoyer.com/experiments/robotarm/ <-- MUST DO
