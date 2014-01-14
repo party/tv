@@ -23,3 +23,4 @@ Use to create:
 - http://html5-demos.appspot.com/static/webaudio/createMediaSourceElement.html
 - http://andrew-hoyer.com/experiments/fractals/
 - http://andrew-hoyer.com/experiments/robotarm/ <-- MUST DO
+- http://codepen.io/neoberg/pen/istyp <-- iframe into the laptop
