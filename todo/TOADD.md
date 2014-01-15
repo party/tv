@@ -25,3 +25,15 @@ Use to create:
 - http://andrew-hoyer.com/experiments/robotarm/ <-- MUST DO
 - http://codepen.io/neoberg/pen/istyp <-- iframe into the laptop
 - http://codepen.io/anandylaanbaatar/pen/tqdmv
+- http://codepen.io/averyvery/pen/ajrzk
+
+More:
+
+- https://github.com/jsantell/dancer.js
+- http://www.storiesinflight.com/jsfft/visualizer/
+- http://www.nihilogic.dk/labs/pocket_full_of_html5/#presets/colormunch.js
+- http://codepen.io/soulwire/pen/Dscga
+
+Odd:
+
+- http://i.imgur.com/h4jcEqF.gif
