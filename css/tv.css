@@ -145,6 +145,11 @@ canvas {
     -webkit-transform: translateZ(0);
     -webkit-transition: opacity .5s, -webkit-filter .5s;
     z-index: 5;
+    display: none;
+}
+
+.laoded .controls {
+    display: block;
 }
 
 .controls.show {

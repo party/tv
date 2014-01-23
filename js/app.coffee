@@ -88,6 +88,8 @@ tv.advance = (amount = 1) ->
 tv.renderCurrentVisualization = ->
     tv.$display.attr('src', '/tv/visualizations/' + tv.visualizations[tv.currentVisualization])
 
+setTimeout -> $('body').addClass('loaded')
+
 # Called within effects.js
 
 tv.attemptingGetUserMedia = ->

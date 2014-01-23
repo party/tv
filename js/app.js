@@ -116,6 +116,9 @@
   tv.renderCurrentVisualization = function() {
     return tv.$display.attr('src', '/tv/visualizations/' + tv.visualizations[tv.currentVisualization]);
   };
+  setTimeout(function() {
+    return $('body').addClass('loaded');
+  });
   tv.attemptingGetUserMedia = function() {
     tv.setupDOM();
     tv.$permissionsBar.addClass('show');
