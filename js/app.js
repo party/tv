@@ -45,7 +45,15 @@
       return tv.advance();
     });
     return $(window).keydown(function(e) {
+      console.log(e, e.keyCode);
       switch (e.keyCode) {
+        case 67:
+          tv.$party.removeClass('smooth').addClass('hidden');
+          $('html').removeClass('party-zoom party-zoom-fast');
+          tv.$cover.removeClass('covered');
+          tv.$display.attr('data-filter-hue-rotate', true);
+          tv.$display.removeAttr('data-filter-invert');
+          return tv.hideControls();
         case 13:
           return tv.renderCurrentVisualization();
         case 39:
@@ -57,10 +65,33 @@
         case 40:
           return tv.advance();
         case 80:
-          if (tv.$party.hasClass('hidden')) {
-            return tv.$party.removeClass('hidden');
+          if (e.shiftKey) {
+            if (tv.$party.hasClass('smooth')) {
+              return tv.$party.removeClass('smooth');
+            } else {
+              return tv.$party.addClass('smooth');
+            }
           } else {
-            return tv.$party.addClass('hidden');
+            if (tv.$party.hasClass('hidden')) {
+              return tv.$party.removeClass('hidden');
+            } else {
+              return tv.$party.addClass('hidden');
+            }
+          }
+          break;
+        case 90:
+          if (e.shiftKey) {
+            if ($('html').hasClass('party-zoom-fast')) {
+              return $('html').removeClass('party-zoom-fast');
+            } else {
+              return $('html').addClass('party-zoom-fast');
+            }
+          } else {
+            if ($('html').hasClass('party-zoom')) {
+              return $('html').removeClass('party-zoom');
+            } else {
+              return $('html').addClass('party-zoom');
+            }
           }
           break;
         case 222:
@@ -97,9 +128,6 @@
           if (e.shiftKey) {
             return tv.toggleControls();
           }
-          break;
-        default:
-          return console.log(e, e.keyCode);
       }
     });
   };

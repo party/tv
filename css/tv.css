@@ -104,6 +104,9 @@ canvas {
     z-index: 2;
     pointer-events: none;
     -webkit-transform: translateZ(0);
+}
+
+.party.smooth {
     transition: opacity 3s;
 }
 
@@ -127,6 +130,45 @@ canvas {
     max-height: 100%;
     max-width: 100%;
     box-shadow: 0 0 0 3000px #000, inset 0 0 0 1px #000;
+}
+
+html.party-zoom,
+html.party-zoom-fast {
+    -webkit-perspective: 1500px;
+}
+
+html.party-zoom .party {
+    -webkit-animation: party-tv-party-zoom 120s linear infinite;
+}
+
+html.party-zoom-fast .party {
+    -webkit-animation: party-tv-party-zoom-fast 16s linear infinite;
+}
+
+html.party-zoom .party .mask-image,
+html.party-zoom-fast .party .mask-image {
+    box-shadow: 0 0 0 60000px #000, inset 0 0 0 1px #000;
+}
+
+@-webkit-keyframes party-tv-party-zoom {
+    0% {
+        -webkit-transform: translateZ(-6000px);
+    }
+    50% {
+        -webkit-transform: translateZ(2000px);
+    }
+    100% {
+        -webkit-transform: translateZ(-6000px);
+    }
+}
+
+@-webkit-keyframes party-tv-party-zoom-fast {
+    0% {
+        -webkit-transform: translateZ(-6000px);
+    }
+    100% {
+        -webkit-transform: translateZ(3000px);
+    }
 }
 
 .controls {

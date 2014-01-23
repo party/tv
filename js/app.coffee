@@ -43,7 +43,15 @@ tv.setupControls = ->
     tv.$cover.dblclick (e) -> tv.advance()
 
     $(window).keydown (e) ->
+        console.log e, e.keyCode
         switch e.keyCode
+            when 67 # C (clear)
+                tv.$party.removeClass('smooth').addClass('hidden')
+                $('html').removeClass('party-zoom party-zoom-fast')
+                tv.$cover.removeClass('covered')
+                tv.$display.attr('data-filter-hue-rotate', true)
+                tv.$display.removeAttr('data-filter-invert')
+                tv.hideControls()
             when 13 # Enter
                 tv.renderCurrentVisualization()
             when 39 # Right
@@ -55,7 +63,15 @@ tv.setupControls = ->
             when 40 # Down
                 tv.advance() # TODO change
             when 80 # P
-                if tv.$party.hasClass('hidden') then tv.$party.removeClass('hidden') else tv.$party.addClass('hidden')
+                if e.shiftKey
+                    if tv.$party.hasClass('smooth') then tv.$party.removeClass('smooth') else tv.$party.addClass('smooth')
+                else
+                    if tv.$party.hasClass('hidden') then tv.$party.removeClass('hidden') else tv.$party.addClass('hidden')
+            when 90 # z
+                if e.shiftKey
+                    if $('html').hasClass('party-zoom-fast') then $('html').removeClass('party-zoom-fast') else $('html').addClass('party-zoom-fast')
+                else
+                    if $('html').hasClass('party-zoom') then $('html').removeClass('party-zoom') else $('html').addClass('party-zoom')
             when 222 # Single quote (to the right of Enter)
                 tv.advance Math.floor(tv.visualizations.length * Math.random())
             when 70 # F
@@ -75,8 +91,6 @@ tv.setupControls = ->
             when 191 # /
                 if e.shiftKey # ?
                     tv.toggleControls()
-            else
-                console.log e, e.keyCode
 
 tv.advance = (amount = 1) ->
     tv.$cover.addClass('covered')
