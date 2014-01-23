@@ -148,8 +148,7 @@ o3djs.shader.asyncLoadFromURL = function(gl,
 
   var vertexText = o3djs.shader.sendTextFileRequest(vertexURL,shaderVertexLoaderCallback.bind(shaderLoader));
   var fragmentText = o3djs.shader.sendTextFileRequest(fragmentURL,shaderFragmentLoaderCallback.bind(shaderLoader));
-
-}
+};
 
 /**
  * Helper which convers GLSL names to JavaScript names.
@@ -157,7 +156,7 @@ o3djs.shader.asyncLoadFromURL = function(gl,
  */
 o3djs.shader.glslNameToJs_ = function(name) {
   return name.replace(/_(.)/g, function(_, p1) { return p1.toUpperCase(); });
-}
+};
 
 /**
  * Creates a new Shader object, loading and linking the given vertex
@@ -214,14 +213,14 @@ o3djs.shader.Shader = function(gl, vertex, fragment) {
       this[jsName + "Loc"] = loc;
     }
   }
-}
+};
 
 /**
  * Binds the shader's program.
  */
 o3djs.shader.Shader.prototype.bind = function() {
   this.gl.useProgram(this.program);
-}
+};
 
 /**
  * Helper for loading a shader.
@@ -245,7 +244,7 @@ o3djs.shader.Shader.prototype.loadShader = function(type, shaderSrc) {
     return null;
   }
   return shader;
-}
+};
 
 /**
  * Helper for looking up an attribute's location.
@@ -261,4 +260,4 @@ o3djs.shader.Shader.prototype.getAttribute = function(name) {
  */
 o3djs.shader.Shader.prototype.getUniform = function(name) {
   return this.gl.getUniformLocation(this.program, name);
-}
+};
