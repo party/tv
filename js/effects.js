@@ -84,6 +84,10 @@ function createLPInputFilter(output) {
 var useFeedbackReduction = true;
 
 function gotStream(stream) {
+    // TODO - make this less of a hack
+    tv.getUserMediaSucceeded();
+    // end TODO
+
     var input = audioContext.createMediaStreamSource(stream);
 
     audioInput = convertToMono(input);
@@ -123,10 +127,14 @@ function initAudio() {
     if (!navigator.getUserMedia)
         return(alert('Error: getUserMedia not supported!'));
 
+    // TODO - make this less of a hack
+    tv.attemptingGetUserMedia();
+    // end TODO
+
     navigator.getUserMedia({audio:true}, gotStream, function(e) {
-        alert('Error getting audio');
+        tv.getUserMediaFailed();
         console.log(e);
     });
 }
 
-window.addEventListener('load', initAudio );
+window.addEventListener('load', initAudio);

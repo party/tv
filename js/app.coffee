@@ -9,15 +9,29 @@ tv.visualizations = [
     'tumbler'
 ]
 
-tv.init = ->
-    tv.setupDOM()
-    tv.setupVisualizationLoadEvents()
-    tv.setupControls()
-
 tv.setupDOM = ->
+    tv.$permissionsBar = $ '.permissions-bar'
+    tv.$permissionsMessage = $ '.permissions-message'
     tv.$display = $ 'iframe'
     tv.$cover = $ '.cover'
     tv.$party = $ '.party'
+    tv.$controls = $ '.controls'
+
+tv.handleWelcome = ->
+    return unless location.search?.match(/\?welcome/)?.length
+    tv.showControls()
+
+tv.toggleControls = ->
+    if tv.$controls.hasClass('show')
+        tv.hideControls()
+    else
+        tv.showControls()
+
+tv.showControls = ->
+    tv.$controls.addClass('show')
+
+tv.hideControls = ->
+    tv.$controls.removeClass('show')
 
 tv.setupVisualizationLoadEvents = ->
     tv.$display.load ->
@@ -58,8 +72,11 @@ tv.setupControls = ->
                     tv.$display.removeAttr('data-filter-invert')
                 else
                     tv.$display.attr('data-filter-invert', true)
+            when 191 # /
+                if e.shiftKey # ?
+                    tv.toggleControls()
             else
-                console.log e.keyCode
+                console.log e, e.keyCode
 
 tv.advance = (amount = 1) ->
     tv.$cover.addClass('covered')
@@ -71,9 +88,35 @@ tv.advance = (amount = 1) ->
 tv.renderCurrentVisualization = ->
     tv.$display.attr('src', '/tv/visualizations/' + tv.visualizations[tv.currentVisualization])
 
-# TODO
-# tv.audioAnalyser
+# Called within effects.js
 
-tv.init()
+tv.attemptingGetUserMedia = ->
+    tv.setupDOM()
+    tv.$permissionsBar.addClass('show')
+    tv.$permissionsMessage.addClass('show')
+
+tv.getUserMediaSucceeded = ->
+    tv.$permissionsBar.removeClass('show')
+    tv.$permissionsMessage.removeClass('show')
+    setTimeout ->
+        tv.$permissionsBar.remove()
+        tv.$permissionsMessage.remove()
+    , 800
+
+    tv.setupVisualizationLoadEvents()
+    tv.setupControls()
+
+    setTimeout ->
+        tv.handleWelcome()
+        tv.renderCurrentVisualization()
+    , 300
+
+tv.getUserMediaFailed = ->
+    tv.$permissionsBar.removeClass('show')
+    tv.$permissionsMessage.html('Could not get access to your mic. <br/> Please refresh and try again.')
+
+# TODO
+
+# tv.audioAnalyser
 
 window.tv = tv
