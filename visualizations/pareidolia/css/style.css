@@ -13,7 +13,7 @@ body {
 	padding: 0 20px;
 	background-color: #000;
 	display: none;
-	opacity: 0.1;
+	opacity: 0;
 }
 
 #tag:hover {
