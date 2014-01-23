@@ -8,7 +8,7 @@
 */
 
 
-var mouseX = 0, mouseY = 0, windowHalfX = window.innerWidth / 2, windowHalfY = window.innerHeight / 2, camera, scene, renderer, material, container;
+var mouseX = 0, mouseY = 0, mouseXBuffer = 0, mouseYBuffer = 0, windowHalfX = window.innerWidth / 2, windowHalfY = window.innerHeight / 2, camera, scene, renderer, material, container;
 var buffer;
 var audioBuffer;
 var dropArea;
@@ -92,17 +92,27 @@ var mouseMovementYScale = 1;
 var mouseMovementYDirection = 0.001;
 
 var mouseMovement = false;
+var crazyMovement = false;
+
+var bufferTrackingX = true;
+var bufferTrackingY = true;
 
 $(window.parent.document.body).find('.cover').click(function(){
     mouseMovement = !mouseMovement;
+    bufferTrackingX = false;
+    bufferTrackingY = false;
+});
+
+$(window.parent.document.body).find('.cover').dblclick(function(){
+    crazyMovement = !crazyMovement;
 });
 
 function render() {
     LoopVisualizer.update();
 
     if (mouseMovement) {
-        mouseX = windowHalfX * mouseMovementXScale;
-        mouseY = windowHalfY * mouseMovementYScale;
+        mouseXBuffer = windowHalfX * mouseMovementXScale;
+        mouseYBuffer = windowHalfY * mouseMovementYScale;
 
         mouseMovementYScale += mouseMovementYDirection;
         if (mouseMovementYScale > 1.4) {
@@ -120,8 +130,30 @@ function render() {
             mouseMovementXDirection = -1 * mouseMovementXDirection;
         }
     } else {
-        mouseX = windowHalfX;
-        mouseY = windowHalfY * 1.28;
+        mouseXBuffer = windowHalfX;
+        mouseYBuffer = windowHalfY * 1.28;
+    }
+
+    if (crazyMovement) {
+        mouseX += (mouseX - mouseXBuffer) / 10;
+        mouseY += (mouseY - mouseYBuffer) / 10;
+    } else {
+        if (Math.abs(mouseXBuffer - mouseX) < 2) {
+            bufferTrackingX = true;
+        }
+        if (Math.abs(mouseYBuffer - mouseY) < 2) {
+            bufferTrackingY = true;
+        }
+        if (!bufferTrackingX) {
+            mouseX += Math.min(1, Math.max(-1, Math.floor(mouseXBuffer - mouseX)));
+        } else {
+            mouseX = mouseXBuffer;
+        }
+        if (!bufferTrackingY) {
+            mouseY += Math.min(1, Math.max(-1, Math.floor(mouseYBuffer - mouseY)));
+        } else {
+            mouseY = mouseYBuffer;
+        }
     }
 
     var xrot = mouseX/window.innerWidth * Math.PI*2 + Math.PI;
