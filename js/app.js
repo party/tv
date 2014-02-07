@@ -45,7 +45,6 @@
       return tv.advance();
     });
     return $(window).keydown(function(e) {
-      console.log(e, e.keyCode);
       switch (e.keyCode) {
         case 67:
           tv.$party.removeClass('smooth').addClass('hidden');
@@ -161,6 +160,7 @@
     }, 800);
     tv.setupVisualizationLoadEvents();
     tv.setupControls();
+    window.startBeatDetection();
     return setTimeout(function() {
       tv.handleWelcome();
       return tv.renderCurrentVisualization();

@@ -95,8 +95,10 @@ function updateVelocities() {
 
   // big beats
   if (detector.beatChance > 1.6) {
+    console.log('big beat');
     radius = 15;
   } else {
+    console.log('small beat');
     radius = 8;
   }
 

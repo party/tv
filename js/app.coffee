@@ -43,7 +43,7 @@ tv.setupControls = ->
     tv.$cover.dblclick (e) -> tv.advance()
 
     $(window).keydown (e) ->
-        console.log e, e.keyCode
+        # console.log e, e.keyCode
         switch e.keyCode
             when 67 # C (clear)
                 tv.$party.removeClass('smooth').addClass('hidden')
@@ -121,6 +121,8 @@ tv.getUserMediaSucceeded = ->
 
     tv.setupVisualizationLoadEvents()
     tv.setupControls()
+
+    window.startBeatDetection() # TODO - fix hack
 
     setTimeout ->
         tv.handleWelcome()
