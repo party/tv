@@ -29,6 +29,7 @@ Use to create:
 
 More:
 
+- http://www.apexvj.com
 - https://github.com/jsantell/dancer.js
 - http://www.storiesinflight.com/jsfft/visualizer/
 - http://www.nihilogic.dk/labs/pocket_full_of_html5/#presets/colormunch.js
