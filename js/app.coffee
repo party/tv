@@ -100,7 +100,7 @@ tv.advance = (amount = 1) ->
     , 750
 
 tv.renderCurrentVisualization = ->
-    tv.$display.attr('src', '/tv/visualizations/' + tv.visualizations[tv.currentVisualization])
+    tv.$display.attr('src', 'https://party.github.io/tv/visualizations/' + tv.visualizations[tv.currentVisualization])
 
 setTimeout -> $('body').addClass('loaded')
 

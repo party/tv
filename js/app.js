@@ -1,8 +1,12 @@
 (function() {
   var tv;
+
   tv = {};
+
   tv.currentVisualization = 0;
+
   tv.visualizations = ['pareidolia', 'fluid', 'reactive', 'generator', 'tumbler'];
+
   tv.setupDOM = function() {
     tv.$permissionsBar = $('.permissions-bar');
     tv.$permissionsMessage = $('.permissions-message');
@@ -11,13 +15,15 @@
     tv.$party = $('.party');
     return tv.$controls = $('.controls');
   };
+
   tv.handleWelcome = function() {
-    var _ref, _ref2;
-    if (!((_ref = location.search) != null ? (_ref2 = _ref.match(/\?welcome/)) != null ? _ref2.length : void 0 : void 0)) {
+    var ref, ref1;
+    if (!((ref = location.search) != null ? (ref1 = ref.match(/\?welcome/)) != null ? ref1.length : void 0 : void 0)) {
       return;
     }
     return tv.showControls();
   };
+
   tv.toggleControls = function() {
     if (tv.$controls.hasClass('show')) {
       return tv.hideControls();
@@ -25,17 +31,21 @@
       return tv.showControls();
     }
   };
+
   tv.showControls = function() {
     return tv.$controls.addClass('show');
   };
+
   tv.hideControls = function() {
     return tv.$controls.removeClass('show');
   };
+
   tv.setupVisualizationLoadEvents = function() {
     return tv.$display.load(function() {
       return tv.$cover.removeClass('covered choked');
     });
   };
+
   tv.setupControls = function() {
     tv.$cover.focus();
     tv.$cover.blur(function() {
@@ -131,6 +141,7 @@
       }
     });
   };
+
   tv.advance = function(amount) {
     if (amount == null) {
       amount = 1;
@@ -141,17 +152,21 @@
       return tv.renderCurrentVisualization();
     }, 750);
   };
+
   tv.renderCurrentVisualization = function() {
-    return tv.$display.attr('src', '/tv/visualizations/' + tv.visualizations[tv.currentVisualization]);
+    return tv.$display.attr('src', 'https://party.github.io/tv/visualizations/' + tv.visualizations[tv.currentVisualization]);
   };
+
   setTimeout(function() {
     return $('body').addClass('loaded');
   });
+
   tv.attemptingGetUserMedia = function() {
     tv.setupDOM();
     tv.$permissionsBar.addClass('show');
     return tv.$permissionsMessage.addClass('show');
   };
+
   tv.getUserMediaSucceeded = function() {
     tv.$permissionsBar.removeClass('show');
     tv.$permissionsMessage.removeClass('show');
@@ -166,9 +181,12 @@
       return tv.renderCurrentVisualization();
     }, 300);
   };
+
   tv.getUserMediaFailed = function() {
     tv.$permissionsBar.removeClass('show');
     return tv.$permissionsMessage.html('Could not get access to your mic. <br/> Please refresh and try again.');
   };
+
   window.tv = tv;
+
 }).call(this);
