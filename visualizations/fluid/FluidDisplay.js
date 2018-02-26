@@ -20,26 +20,6 @@ FluidDisplay.prototype.clear = function() {
   this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
 };
 
-FluidDisplay.prototype.renderDensityField = function(field) {
-  for (var x = 0; x < field.width; x++) {
-    for (var y = 0; y < field.height; y++) {
-      var d = field.getDensity(x, y) / 5;
-      if (d > 1) d = 1;
-      var base = 4 * (y * field.width + x);
-      d = d * 2 - 1;
-      this.bufferimage.data[base + 0] = jet.r(d);
-      this.bufferimage.data[base + 1] = jet.g(d);
-      this.bufferimage.data[base + 2] = jet.b(d);
-    }
-  }
-  this.buffercontext.putImageData(this.bufferimage, 0, 0);
-  var hscale = this.canvas.width / this.buffer.width;
-  var vscale = this.canvas.height / this.buffer.height;
-  this.context.scale(hscale, vscale);
-  this.context.drawImage(this.buffer, 0, 0);
-  this.context.scale(1 / hscale, 1 / vscale);
-};
-
 FluidDisplay.prototype.renderVelocityField = function(field) {
   this.context.save();
   this.context.lineWidth = 1;
