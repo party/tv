@@ -5,7 +5,7 @@
 
   tv.currentVisualization = 0;
 
-  tv.visualizations = ['pareidolia', 'fluid', 'reactive', 'generator', 'tumbler'];
+  tv.visualizations = ['pareidolia', 'fluid', 'diamonds', 'reactive', 'generator', 'tumbler'];
 
   tv.setupDOM = function() {
     tv.$permissionsBar = $('.permissions-bar');
@@ -55,7 +55,6 @@
       return tv.advance();
     });
     return $(window).keydown(function(e) {
-      console.log(e, e.keyCode);
       switch (e.keyCode) {
         case 67:
           tv.$party.removeClass('smooth').addClass('hidden');
@@ -154,7 +153,7 @@
   };
 
   tv.renderCurrentVisualization = function() {
-    return tv.$display.attr('src', 'https://party.github.io/tv/visualizations/' + tv.visualizations[tv.currentVisualization]);
+    return tv.$display.attr('src', '/tv/visualizations/' + tv.visualizations[tv.currentVisualization]);
   };
 
   setTimeout(function() {
