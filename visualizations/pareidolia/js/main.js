@@ -192,7 +192,7 @@ function init() {
 	composer.addPass( rgbPass );
 	rgbPass.renderToScreen = true;
 
-	audioContext = new window.webkitAudioContext();
+	audioContext = new window.AudioContext();
 
 	onResize();
 
