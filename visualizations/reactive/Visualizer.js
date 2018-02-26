@@ -150,7 +150,10 @@ var LoopVisualizer = (function() {
             var normLevel = levels[ringId];
             var hue = colors[ringId];
 
-            materials[ii].color.setHSV(hue, 1, normLevel);
+            // TODO - enable original colors?
+            // materials[ii].color.setHSV(hue, 1, normLevel);
+            materials[ii].color.setHSV(hue, 0, normLevel);
+
             materials[ii].linewidth =normLevel*3;
             materials[ii].opacity = normLevel ;
             geoms[ii].__dirtyVertices = true;
