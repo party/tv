@@ -43,7 +43,6 @@ tv.setupControls = ->
     tv.$cover.dblclick (e) -> tv.advance()
 
     $(window).keydown (e) ->
-        console.log e, e.keyCode
         switch e.keyCode
             when 67 # C (clear)
                 tv.$party.removeClass('smooth').addClass('hidden')
