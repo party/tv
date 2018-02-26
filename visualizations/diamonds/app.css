@@ -1,0 +1,45 @@
+body {
+    background-color: #000;
+    margin: 0px;
+    text-align: center;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ddd;
+}
+
+#info {
+    display: none;
+}
+
+#loading {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    z-index: 5;
+    opacity: 0
+}
+
+#loading:hover {
+    opacity: 1;
+}
+
+#debugCtx{
+    position: absolute;
+    top:10px;
+    left: 100px;
+    width: 800px;
+    height: 600px;
+}
+
+#loadSample{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+canvas + div {
+    visibility: hidden;
+}
+
+canvas + div:hover {
+    visibility: visible;
+}
