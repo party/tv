@@ -38,7 +38,9 @@ var SPECIAL_SHAPE = 1;
         color = "#fff";
       } else {
         if (SPECIAL_SHAPE === 1) {
-          color = "#f209a0";
+          // TODO
+          // color = "#f209a0";
+          color = "#fafafa";
         }
         SPECIAL_SHAPE -= 1;
       }
@@ -325,9 +327,14 @@ var SPECIAL_SHAPE = 1;
     var flash = 0;
     var freeze = 0;
 
-    var r = 50;
-    var g = 50;
-    var b = 213;
+    // TODO
+    // var r = 50;
+    // var g = 50;
+    // var b = 213;
+
+    var r = 150;
+    var g = 150;
+    var b = 150;
 
     var colorsOff = false;
 
@@ -359,10 +366,12 @@ var SPECIAL_SHAPE = 1;
           var circles, circle;
           circles = this.svg_.querySelectorAll('circle');
           circle = circles[Math.floor(Math.random() * circles.length)];
-          if (circle.style.fill !== '#f209a0') {
+          if (circle.style.fill !== '#fafafa') {
             if (circle.style.fill === '#000000') {
               if (Math.random() > .94) {
-                circle.style.cssText = 'fill: #f309a0';
+                // TODO
+                // circle.style.cssText = 'fill: #f309a0';
+                circle.style.cssText = 'fill: #fefefe';
               } else {
                 circle.style.cssText = 'fill: #fff';
               }
