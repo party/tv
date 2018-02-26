@@ -130,6 +130,13 @@ window.onload = function() {
     showVelocity =! showVelocity;
   });
 
+  try {
+    var cover = window.parent.document.body.querySelector('.cover');
+    cover.addEventListener('click', function(){
+      canvas.click();
+    });
+  } catch (e) {}
+
   for (var i = 0; i < n; i++) {
     resetParticle(i);
     pl[i] = Math.floor(Math.random() * life);
