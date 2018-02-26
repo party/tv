@@ -110,7 +110,7 @@ var LoopVisualizer = (function() {
         analyser.getByteTimeDomainData(timeByteData);
 
         // boost levels
-        for(var j = 0; j < length; ++j) {
+        for(var j = 0; j < length; ++j) { //TODO  (length???? wtf)
             freqByteData[j] = Math.min(255, freqByteData[j] * 50);
         }
 
