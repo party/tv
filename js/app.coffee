@@ -2,10 +2,11 @@ tv = {}
 
 tv.currentVisualization = 0
 tv.visualizations = [
-    'pareidolia',
-    'fluid',
-    'reactive',
-    'generator',
+    'pareidolia'
+    'fluid'
+    'diamonds'
+    'reactive'
+    'generator'
     'tumbler'
 ]
 
