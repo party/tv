@@ -73,9 +73,13 @@ FluidDisplay.prototype.renderParticles = function(field, px, py, pc, pl) {
     this.image.data[base + 3]  = 255;
     // blending modes
     if (this.additive) {
+      // TODO
+      // this.image.data[base    ] += Math.floor(r * 255);
+      // this.image.data[base + 1] += Math.floor(g * 255);
+      // this.image.data[base + 2] += Math.floor(b * 255);
       this.image.data[base    ] += Math.floor(r * 255);
-      this.image.data[base + 1] += Math.floor(g * 255);
-      this.image.data[base + 2] += Math.floor(b * 255);
+      this.image.data[base + 1] += Math.floor(r * 255);
+      this.image.data[base + 2] += Math.floor(r * 255);
     } else {
       this.image.data[base    ] = Math.floor(r * 255);
       this.image.data[base + 1] = Math.floor(g * 255);
