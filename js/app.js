@@ -153,7 +153,7 @@
   };
 
   tv.renderCurrentVisualization = function() {
-    return tv.$display.attr('src', '/tv/visualizations/' + tv.visualizations[tv.currentVisualization]);
+    return tv.$display.attr('src', '/tv/visualizations/' + tv.visualizations[tv.currentVisualization] + '/');
   };
 
   setTimeout(function() {
