@@ -56,14 +56,10 @@ pre:before {
     background-size: 300px 300px;
 }
 
-pre[data-bg="0"]:before  { background-image: url("http://designyoutrust.com/wp-content/uploads/2011/01/dg1b.gif"); }
-pre[data-bg="1"]:before  { background-image: url("http://files.myopera.com/Trynity34/albums/12490142/tumblr_kyfejnsTSn1qzt4vjo1_500.gif"); }
-pre[data-bg="2"]:before { background-image: url("http://studiorokit.com/wp-content/uploads/2013/08/endles_3d_tunel.gif"); }
-/* pre[data-bg="3"]:before  { background-image: url("http://www.changethethought.com/wp-content/emiliogomariz.gif"); } */
-
 pre:after {
     content: "";
-    background: url("http://www.scri8e.com/stars/flashites/FSz1/FS20.gif") repeat;
+    background-repeat: repeat;
+    background-size: 300px 300px;
     position: fixed;
     display: block;
     z-index: 1;
@@ -74,9 +70,16 @@ pre:after {
     margin: auto;
     height: 100%;
     width: 100%;
-    background-size: 300px 300px;
     opacity: 0;
 }
+
+/*
+pre[data-bg="0"]:before { background-image: url("gifts/0.gif") }
+pre[data-bg="1"]:before { background-image: url("gifts/1.gif") }
+pre[data-bg="2"]:before { background-image: url("gifts/2.gif") }
+pre[data-bg="3"]:before { background-image: url("gifts/3.gif") }
+pre[data-bg="4"]:before { background-image: url("gifts/4.gif") }
+*/
 
 /* TODO - undo */
 
